@@ -34,7 +34,6 @@ public class DumperTests
     /// Scenario: Can dump results of load to Toml
     /// </summary>
     [Test]
-    [Explicit]
     public void DumpShapes()
     {
         var dumper = new Dumper();
@@ -48,8 +47,8 @@ public class DumperTests
         }
         var lines = stringBuilder.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
-        // Each shape should be 4 lines
-        Assert.That(lines, Has.Length.EqualTo(32));
+        // Each shape should be 5 lines
+        Assert.That(lines, Has.Length.EqualTo(40));
     }
 
     private T Load<T>(string name) where T : class

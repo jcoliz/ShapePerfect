@@ -37,6 +37,31 @@ public class Dumper
     /// </summary>
     public void DumpToml(TextWriter writer)
     {
-        throw new NotImplementedException();
+        if (Shapes is null )
+        {
+            return;
+        }
+
+        foreach (var shape in Shapes)
+        {
+            writer.WriteLine($"[{shape.Key}]");
+            if (shape.Value.X is not null)
+            {
+                writer.WriteLine($"x = {shape.Value.X}");
+            }
+            if (shape.Value.Y is not null)
+            {
+                writer.WriteLine($"y = {shape.Value.Y}");
+            }
+            if (shape.Value.X is not null)
+            {
+                writer.WriteLine($"width = {shape.Value.Width}");
+            }
+            if (shape.Value.X is not null)
+            {
+                writer.WriteLine($"height = {shape.Value.Height}");
+            }
+            writer.WriteLine();
+        }
     }
 }
