@@ -51,11 +51,11 @@ public class Dumper
             {
                 writer.WriteLine($"y = {shape.Y}");
             }
-            if (shape.X is not null)
+            if (shape.Width is not null)
             {
                 writer.WriteLine($"width = {shape.Width}");
             }
-            if (shape.X is not null)
+            if (shape.Height is not null)
             {
                 writer.WriteLine($"height = {shape.Height}");
             }
@@ -65,6 +65,26 @@ public class Dumper
 
     public void Adjust(IPresentation presentation)
     {
-        throw new NotImplementedException();
+        foreach(var shape in Shapes)
+        {
+            var adjustMe = presentation.Slides[0].ShapeWithName(shape.Name);
+
+            if (shape.X is not null)
+            {
+                adjustMe.X = shape.X.Value * ShapeList.Dpi;
+            }
+            if (shape.Y is not null)
+            {
+                adjustMe.Y = shape.Y.Value * ShapeList.Dpi;
+            }
+            if (shape.Width is not null)
+            {
+                adjustMe.Width = shape.Width.Value * ShapeList.Dpi;
+            }
+            if (shape.Height is not null)
+            {
+                adjustMe.Height = shape.Height.Value * ShapeList.Dpi;
+            }
+        }
     }
 }

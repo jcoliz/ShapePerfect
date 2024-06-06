@@ -100,7 +100,6 @@ public class DumperTests
         Assert.That(pres.Slides[0].Shapes.Where(x => x.Name.StartsWith("Box")), Has.All.Property("Height").EqualTo(1.5m * 96));
     }
 
-
     private T Load<T>(string name) where T : class
     {
         var names = Assembly.GetExecutingAssembly().GetManifestResourceNames();
