@@ -37,6 +37,8 @@
   <EmbeddedResource Include="data/empty.pptx" />
   <Content Remove="data/chaos.pptx" />
   <EmbeddedResource Include="data/chaos.pptx" />
+  <Content Remove="data/order.toml" />
+  <EmbeddedResource Include="data/order.toml" />
 </ItemGroup>
 
 </Project>

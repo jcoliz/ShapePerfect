@@ -49,8 +49,13 @@ public class DumperTests
         }
         var lines = stringBuilder.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
-        // Each shape should be 5 lines
-        Assert.That(lines, Has.Length.EqualTo(40));
+        File.Delete("DumpShapes.toml");
+        using var stream = File.OpenWrite("DumpShapes.toml");
+        using var filewriter = new StreamWriter(stream);
+        dumper.DumpToml(filewriter);
+
+        // Each shape should be 6 lines
+        Assert.That(lines, Has.Length.EqualTo(48));
     }
 
     /// <summary>
@@ -86,4 +91,13 @@ public class DumperTests
 
         return (T)result;
     }
+    private T LoadToml<T>(string name) where T : class, new()
+    {
+        var names = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+        var filename = names.Where(x => x.EndsWith($".data.{name}")).Single();
+        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filename);
+        using var reader = new StreamReader(stream!);
+        var toml = reader.ReadToEnd();
+        return Toml.ToModel<T>(toml);
+    }    
 }

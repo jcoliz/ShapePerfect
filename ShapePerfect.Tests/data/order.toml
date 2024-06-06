@@ -1,0 +1,55 @@
+[[shapes]]
+name = "Box 1"
+x = 1
+y = 1
+width = 1.5
+height = 1.5
+
+[[shapes]]
+name = "Box 2"
+x = 3
+y = 1
+width = 1.5
+height = 1.5
+
+[[shapes]]
+name = "Box 3"
+x = 5
+y = 1
+width = 1.5
+height = 1.5
+
+[[shapes]]
+name = "Box 4"
+x = 7
+y = 1
+width = 1.5
+height = 1.5
+
+[[shapes]]
+name = "Text 1"
+x = 1
+y = 1
+width = 1.5
+height = 0.5
+
+[[shapes]]
+name = "Text 2"
+x = 3
+y = 1
+width = 1.5
+height = 0.5
+
+[[shapes]]
+name = "Text 3"
+x = 5
+y = 1
+width = 1.5
+height = 0.5
+
+[[shapes]]
+name = "Text 4"
+x = 7
+y = 1
+width = 1.5
+height = 0.5
