@@ -53,6 +53,8 @@ public class DumperTests
         using var stream = File.OpenWrite("DumpShapes.toml");
         using var filewriter = new StreamWriter(stream);
         dumper.DumpToml(filewriter);
+        filewriter.Flush();
+        TestContext.AddTestAttachment("DumpShapes.toml");
 
         // Each shape should be 6 lines
         Assert.That(lines, Has.Length.EqualTo(48));
@@ -98,6 +100,10 @@ public class DumperTests
         // Then: All boxes are 1.5 inches wide and high
         Assert.That(pres.Slides[0].Shapes.Where(x => x.Name.StartsWith("Box")), Has.All.Property("Width").EqualTo(1.5m * 96));
         Assert.That(pres.Slides[0].Shapes.Where(x => x.Name.StartsWith("Box")), Has.All.Property("Height").EqualTo(1.5m * 96));
+
+        File.Delete("AdjustPresentation.pptx");
+        pres.SaveAs("AdjustPresentation.pptx");
+        TestContext.AddTestAttachment("AdjustPresentation.pptx");
     }
 
     private T Load<T>(string name) where T : class
