@@ -83,8 +83,10 @@ public class DumperTests
         Assert.That(loaded.shapes, Has.Count.EqualTo(8));
     }
 
+    /// <summary>
+    /// Scenario: Can adjust presentation using shapes
+    /// </summary>
     [Test]
-    [Explicit]
     public void AdjustPresentation()
     {
         // Given: A presentation with shapes organized chaotically
