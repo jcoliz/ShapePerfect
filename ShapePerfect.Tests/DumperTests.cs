@@ -81,6 +81,26 @@ public class DumperTests
         Assert.That(loaded.shapes, Has.Count.EqualTo(8));
     }
 
+    [Test]
+    [Explicit]
+    public void AdjustPresentation()
+    {
+        // Given: A presentation with shapes organized chaotically
+        var pres = Load<IPresentation>("chaos.pptx");
+
+        // And: A shape list to impose order on those shapes
+        var shapes = LoadToml<ShapeList>("order.toml");
+        var dumper = new Dumper() { Shapes = shapes!.shapes };
+
+        // When: Adjusting the presentation to match the shape list
+        dumper.Adjust(pres);
+
+        // Then: All boxes are 1.5 inches wide and high
+        Assert.That(pres.Slides[0].Shapes.Where(x => x.Name.StartsWith("Box")), Has.All.Property("Width").EqualTo(1.5m * 96));
+        Assert.That(pres.Slides[0].Shapes.Where(x => x.Name.StartsWith("Box")), Has.All.Property("Height").EqualTo(1.5m * 96));
+    }
+
+
     private T Load<T>(string name) where T : class
     {
         var names = Assembly.GetExecutingAssembly().GetManifestResourceNames();

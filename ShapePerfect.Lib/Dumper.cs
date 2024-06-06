@@ -8,7 +8,7 @@ namespace ShapePerfect.Lib;
 /// </summary>
 public class Dumper
 {
-    public List<Shape> Shapes { get; } = new();
+    public List<Shape> Shapes { get; set; } = new();
 
     /// <summary>
     /// Load presentation into configuration objects
@@ -61,5 +61,10 @@ public class Dumper
             }
             writer.WriteLine();
         }
+    }
+
+    public void Adjust(IPresentation presentation)
+    {
+        throw new NotImplementedException();
     }
 }
