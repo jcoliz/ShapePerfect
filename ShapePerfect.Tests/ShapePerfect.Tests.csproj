@@ -31,4 +31,9 @@
     <ProjectReference Include="..\ShapePerfect.Lib\ShapePerfect.Lib.csproj" />
   </ItemGroup>
 
+<ItemGroup>
+  <Content Remove="data/empty.pptx" />
+  <EmbeddedResource Include="data/empty.pptx" />
+</ItemGroup>
+
 </Project>
