@@ -5,4 +5,13 @@ namespace ShapePerfect.Lib.Configuration;
 /// </summary>
 public class ShapeList: Dictionary<string, Shape>
 {
+    public const decimal Dpi = 96;
+    
+    public ShapeList()
+    {        
+    }
+
+    public ShapeList(IEnumerable<KeyValuePair<string,Shape>> source): base(source)
+    {        
+    }
 }

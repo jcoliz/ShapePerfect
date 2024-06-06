@@ -17,10 +17,9 @@ public class DumperTests
     }
 
     /// <summary>
-    /// Scenario: Can load presentation without error
-    /// </summary>    
+    /// Scenario: Can load slides from presentation without error
+    /// </summary>
     [Test]
-    [Explicit]
     public void LoadShapes()
     {
         var dumper = new Dumper();

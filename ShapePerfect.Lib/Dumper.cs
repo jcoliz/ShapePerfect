@@ -12,13 +12,24 @@ public class Dumper
         get;
         private set;
     }
-    
+
     /// <summary>
     /// Load presentation into configuration objects
     /// </summary>
     public void Load(IPresentation presentation)
     {
-        // In progress
+        var shapes = presentation.Slides[0].Shapes
+            .ToDictionary(
+                x => x.Name,
+                x => new Shape()
+                {
+                    X = x.X / ShapeList.Dpi,
+                    Y = x.Y / ShapeList.Dpi,
+                    Width = x.Width / ShapeList.Dpi,
+                    Height = x.Height / ShapeList.Dpi
+                });
+
+        Shapes = new ShapeList(shapes);
     }
 
     /// <summary>
