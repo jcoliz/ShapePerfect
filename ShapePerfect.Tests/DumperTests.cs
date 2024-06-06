@@ -51,9 +51,9 @@ public class DumperTests
 
         File.Delete("DumpShapes.toml");
         using var stream = File.OpenWrite("DumpShapes.toml");
-        using var filewriter = new StreamWriter(stream);
-        dumper.DumpToml(filewriter);
-        filewriter.Flush();
+        using var fileWriter = new StreamWriter(stream);
+        dumper.DumpToml(fileWriter);
+        fileWriter.Flush();
         TestContext.AddTestAttachment("DumpShapes.toml");
 
         // Each shape should be 6 lines
@@ -109,7 +109,7 @@ public class DumperTests
     private T Load<T>(string name) where T : class
     {
         var names = Assembly.GetExecutingAssembly().GetManifestResourceNames();
-        var filename = names.Where(x => x.EndsWith($".data.{name}")).Single();
+        var filename = names.Single(x => x.EndsWith($".data.{name}"));
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filename);
 
         IPresentation result = new Presentation(stream!);
@@ -119,7 +119,7 @@ public class DumperTests
     private T LoadToml<T>(string name) where T : class, new()
     {
         var names = Assembly.GetExecutingAssembly().GetManifestResourceNames();
-        var filename = names.Where(x => x.EndsWith($".data.{name}")).Single();
+        var filename = names.Single(x => x.EndsWith($".data.{name}"));
         var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filename);
         using var reader = new StreamReader(stream!);
         var toml = reader.ReadToEnd();
