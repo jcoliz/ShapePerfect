@@ -8,10 +8,7 @@ namespace ShapePerfect.Lib;
 /// </summary>
 public class Dumper
 {
-    public ShapeList? Shapes {
-        get;
-        private set;
-    }
+    public List<Shape> Shapes { get; } = new();
 
     /// <summary>
     /// Load presentation into configuration objects
@@ -19,17 +16,17 @@ public class Dumper
     public void Load(IPresentation presentation)
     {
         var shapes = presentation.Slides[0].Shapes
-            .ToDictionary(
-                x => x.Name,
+            .Select(
                 x => new Shape()
                 {
+                    Name = x.Name,
                     X = x.X / ShapeList.Dpi,
                     Y = x.Y / ShapeList.Dpi,
                     Width = x.Width / ShapeList.Dpi,
                     Height = x.Height / ShapeList.Dpi
                 });
-
-        Shapes = new ShapeList(shapes);
+        Shapes.Clear();
+        Shapes.AddRange(shapes);
     }
 
     /// <summary>
@@ -44,22 +41,23 @@ public class Dumper
 
         foreach (var shape in Shapes)
         {
-            writer.WriteLine($"[{shape.Key}]");
-            if (shape.Value.X is not null)
+            writer.WriteLine($"[[shapes]]");
+            writer.WriteLine($"name = \"{shape.Name}\"");
+            if (shape.X is not null)
             {
-                writer.WriteLine($"x = {shape.Value.X}");
+                writer.WriteLine($"x = {shape.X}");
             }
-            if (shape.Value.Y is not null)
+            if (shape.Y is not null)
             {
-                writer.WriteLine($"y = {shape.Value.Y}");
+                writer.WriteLine($"y = {shape.Y}");
             }
-            if (shape.Value.X is not null)
+            if (shape.X is not null)
             {
-                writer.WriteLine($"width = {shape.Value.Width}");
+                writer.WriteLine($"width = {shape.Width}");
             }
-            if (shape.Value.X is not null)
+            if (shape.X is not null)
             {
-                writer.WriteLine($"height = {shape.Value.Height}");
+                writer.WriteLine($"height = {shape.Height}");
             }
             writer.WriteLine();
         }

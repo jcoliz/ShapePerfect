@@ -9,6 +9,12 @@ namespace ShapePerfect.Lib.Configuration;
 /// </remarks>
 public record Shape
 {
+    public string Name
+    {
+        get;
+        set;
+    } = string.Empty;
+
     /// <summary>
     /// Horizontal position of shape, in inches
     /// </summary>
