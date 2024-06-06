@@ -1,4 +1,5 @@
 using ShapeCrawler;
+using ShapePerfect.Lib.Configuration;
 
 namespace ShapePerfect.Lib;
 
@@ -7,6 +8,11 @@ namespace ShapePerfect.Lib;
 /// </summary>
 public class Dumper
 {
+    public ShapeList? Shapes {
+        get;
+        private set;
+    }
+    
     /// <summary>
     /// Load presentation into configuration objects
     /// </summary>
